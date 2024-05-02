@@ -12,7 +12,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class H2DBBookRepository implements BookRepository {
 
-  private JPABookRepository bookRepository;
+  private final JPABookRepository bookRepository;
 
   @Override
   public Book save(Book book) {

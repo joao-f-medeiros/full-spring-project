@@ -12,7 +12,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class H2DBPublisherRepository implements PublisherRepository {
 
-  private JPAPublisherRepository publisherRepository;
+  private final JPAPublisherRepository publisherRepository;
 
   @Override
   public Publisher save(Publisher publisher) {

@@ -16,7 +16,7 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/stocks")
 public class StockResource {
 
-  private StockService stockService;
+  private final StockService stockService;
 
   @GetMapping("/{code}")
   public StockDTO getStock(@PathVariable String code) {

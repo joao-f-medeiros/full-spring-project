@@ -10,7 +10,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class DomainStockService implements StockService {
 
-  private FinancesIntegration financesIntegration;
+  private final FinancesIntegration financesIntegration;
 
   @Override
   public BigDecimal getStockValue(String code) {

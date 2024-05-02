@@ -12,7 +12,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class H2DBAuthorRepository implements AuthorRepository {
 
-  private JPAAuthorRepository authorRepository;
+  private final JPAAuthorRepository authorRepository;
 
   @Override
   public Author save(Author book) {

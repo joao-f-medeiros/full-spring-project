@@ -16,9 +16,9 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class BootstrapData implements CommandLineRunner {
 
-  private H2DBAuthorRepository authorRepository;
-  private H2DBBookRepository bookRepository;
-  private H2DBPublisherRepository publisherRepository;
+  private final H2DBAuthorRepository authorRepository;
+  private final H2DBBookRepository bookRepository;
+  private final H2DBPublisherRepository publisherRepository;
 
   @Override
   public void run(String... args) throws Exception {

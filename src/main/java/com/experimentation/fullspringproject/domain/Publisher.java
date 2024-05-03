@@ -39,7 +39,9 @@ public class Publisher {
   private Set<Book> books = new HashSet<>();
 
   public void addBook(Book book) {
-    this.books.add(book);
+    if (book != null) {
+      books.add(book);
+    }
   }
 
   @Override
@@ -51,11 +53,8 @@ public class Publisher {
   public boolean equals(Object obj) {
     if (this == obj)
       return true;
-    if (obj == null || getClass() != obj.getClass())
+    if (!(obj instanceof Publisher publisher))
       return false;
-    if (obj instanceof Publisher publisher) {
-      return Objects.equals(id, publisher.id) && Objects.equals(name, publisher.name);
-    }
-    return false;
+    return Objects.equals(id, publisher.id) && Objects.equals(name, publisher.name);
   }
 }

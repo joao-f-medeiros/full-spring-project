@@ -31,7 +31,10 @@ public class Author {
   private Set<Book> books = new HashSet<>();
 
   public void addBook(Book book) {
-    this.books.add(book);
+    if (book != null) {
+      book.addAuthor(this);
+      books.add(book);
+    }
   }
 
   @Override
@@ -43,14 +46,11 @@ public class Author {
   public boolean equals(Object obj) {
     if (this == obj)
       return true;
-    if (obj == null || getClass() != obj.getClass())
+    if (!(obj instanceof Author author))
       return false;
-    if (obj instanceof Author author) {
-      return Objects.equals(id, author.id)
-          && Objects.equals(firstName, author.firstName)
-          && Objects.equals(lastName, author.lastName);
-    }
-    return false;
+    return Objects.equals(id, author.id)
+        && Objects.equals(firstName, author.firstName)
+        && Objects.equals(lastName, author.lastName);
   }
 
 }

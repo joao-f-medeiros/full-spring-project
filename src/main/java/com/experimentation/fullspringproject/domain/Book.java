@@ -38,7 +38,9 @@ public class Book {
   private Publisher publisher;
 
   public void addAuthor(Author author) {
-    this.authors.add(author);
+    if (author != null) {
+      authors.add(author);
+    }
   }
 
   @Override
@@ -50,13 +52,10 @@ public class Book {
   public boolean equals(Object obj) {
     if (this == obj)
       return true;
-    if (obj == null || getClass() != obj.getClass())
+    if (!(obj instanceof Book book))
       return false;
-    if (obj instanceof Book book) {
-      return Objects.equals(id, book.id)
-          && Objects.equals(title, book.title)
-          && Objects.equals(isbn, book.isbn);
-    }
-    return false;
+    return Objects.equals(id, book.id)
+        && Objects.equals(title, book.title)
+        && Objects.equals(isbn, book.isbn);
   }
 }

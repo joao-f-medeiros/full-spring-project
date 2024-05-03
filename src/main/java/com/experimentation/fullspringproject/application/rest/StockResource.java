@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.experimentation.fullspringproject.domain.service.StockService;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/stocks")
 public class StockResource {
@@ -19,10 +19,10 @@ public class StockResource {
   private final StockService stockService;
 
   @GetMapping("/{code}")
-  public StockDTO getStock(@PathVariable String code) {
-    return new StockDTO(code, stockService.getStockValue(code));
+  public StockResponse getStockValue(@PathVariable String code) {
+    return new StockResponse(code, stockService.getStockValue(code));
   }
 
-  record StockDTO(String code, BigDecimal value) {
+  record StockResponse(String code, BigDecimal value) {
   }
 }

@@ -15,17 +15,18 @@ public class DomainStockService implements StockService {
   @Override
   public BigDecimal getStockValue(String code) {
     String stockPage = financesIntegration.searchStockMarketPrice(code);
-    if (stockPage.contains(code + "</div>")) {
-      int target = stockPage.indexOf(code + "</div>");
-      int deci = stockPage.indexOf(",", target);
-      int start = deci;
-      while (stockPage.charAt(start) != '$') {
-        start--;
-      }
-      String price = stockPage.substring(start + 1, deci + 3);
-      return new BigDecimal(price.replace(",", ".").replace("\u00a0", ""));
+    int stockIndex = stockPage.indexOf(code + "</div>");
+    if (stockIndex == -1) {
+      return BigDecimal.ZERO;
     }
-    return BigDecimal.ZERO;
+    int dollarsIndex = stockPage.lastIndexOf("$", stockPage.indexOf(",", stockIndex));
+    if (dollarsIndex == -1) {
+      return BigDecimal.ZERO;
+    }
+    String price = stockPage.substring(dollarsIndex + 1, stockPage.indexOf(",", stockIndex) + 3)
+        .replace(",", ".")
+        .replace("\u00a0", "");
+    return new BigDecimal(price);
   }
 
 }
